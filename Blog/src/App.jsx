@@ -5,8 +5,8 @@ import authService from "./service/auth";
 import { login, logout } from "./store/authSlice";
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { Header } from "./components/Header/Heade.jsx";
-import { Footer } from "./components/Footer/Footer.jsx";
+
+import { Footer, Header } from "./components/index.js";
 function App() {
   const [loading, setloading] = useState(true);
   const dispatch = useDispatch();
