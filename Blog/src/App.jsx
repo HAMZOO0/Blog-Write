@@ -7,7 +7,11 @@ function App() {
   const [count, setCount] = useState(0);
 
   console.log(import.meta.env.VITE_APPWRITE_URL);
-  return <></>;
+  return (
+    <>
+      <h2>azsd</h2>
+    </>
+  );
 }
 
 export default App;
