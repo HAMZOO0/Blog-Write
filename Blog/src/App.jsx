@@ -1,13 +1,51 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useState } from "react";
+import { LoadingSpinner } from "./components";
 import "./App.css";
+import authService from "./service/auth";
+import { login, logout } from "./store/authSlice";
+import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
 
+import { Footer, Header } from "./components/index.js";
 function App() {
-  const [count, setCount] = useState(0);
+  const [loading, setloading] = useState(true);
+  const dispatch = useDispatch();
 
-  console.log(import.meta.env.VITE_APPWRITE_URL);
-  return <></>;
+  useEffect(() => {
+    authService
+      .getCurrentUser()
+      .then((user) => {
+        if (user) {
+          dispatch(login(user));
+          // return <LoadingSpinner />;
+        } else {
+          dispatch(logout());
+        }
+      })
+      .finally(() => {
+        setloading(false);
+      });
+  }, []);
+
+  // loading true
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  // loading false
+
+  return (
+    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+      <div className="w-full block">
+        <Header />
+        <main>
+          TODO: <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </div>
+  );
 }
 
 export default App;
