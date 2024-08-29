@@ -7,9 +7,7 @@ import Logo from "./Logo.jsx";
 import POstCard from "./PostCard.jsx";
 import Select from "./Select.jsx";
 import Input from "./Input.jsx";
-
 export {
-  LoadingSpinner,
   Header,
   Footer,
   Logout_btn,
@@ -18,4 +16,5 @@ export {
   POstCard,
   Select,
   Input,
+  LoadingSpinner,
 };

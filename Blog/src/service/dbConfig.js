@@ -121,4 +121,4 @@ export class Services {
 }
 
 const services = new Services();
-export default services();
+export default services;
