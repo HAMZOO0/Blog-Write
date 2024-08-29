@@ -4,4 +4,18 @@ import Footer from "./Footer/Footer.jsx";
 import Logout_btn from "./Header/Logout_btn.jsx";
 import Container from "./container/Container.jsx";
 import Logo from "./Logo.jsx";
-export { LoadingSpinner, Header, Footer, Logout_btn, Container, Logo };
+import POstCard from "./PostCard.jsx";
+import Select from "./Select.jsx";
+import Input from "./Input.jsx";
+
+export {
+  LoadingSpinner,
+  Header,
+  Footer,
+  Logout_btn,
+  Container,
+  Logo,
+  POstCard,
+  Select,
+  Input,
+};
