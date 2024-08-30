@@ -7,10 +7,7 @@ import Logo from "./Logo.jsx";
 import POstCard from "./PostCard.jsx";
 import Select from "./Select.jsx";
 import Input from "./Input.jsx";
-import LoadingSpinner from "./Loading/Loading.jsx";
-import RTE from "./RTE.jsx";
 export {
-  LoadingSpinner,
   Header,
   Footer,
   Logout_btn,
@@ -19,6 +16,5 @@ export {
   POstCard,
   Select,
   Input,
-  RTE,
   LoadingSpinner,
 };
