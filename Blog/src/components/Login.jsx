@@ -54,12 +54,15 @@ function Login() {
           </Link>
         </p>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        {/* handleSubmit :  This function will receive the form data if form validation is successful. */}
         <form onSubmit={handleSubmit(Handlelogin)} className="mt-8">
           <div className="space-y-5">
             <Input
               label="Email: "
               placeholder="Enter your email"
               type="email"
+              // register is used to register an input field into the react-hook-form system. It links the input field to the form, allowing react-hook-form to track its value and handle form submission automatically.
+
               {...register("email", {
                 required: true,
                 validate: {

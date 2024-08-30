@@ -8,6 +8,7 @@ import POstCard from "./PostCard.jsx";
 import Select from "./Select.jsx";
 import Input from "./Input.jsx";
 import LoadingSpinner from "./Loading/Loading.jsx";
+import RTE from "./RTE.jsx";
 export {
   LoadingSpinner,
   Header,
@@ -18,5 +19,6 @@ export {
   POstCard,
   Select,
   Input,
+  RTE,
   LoadingSpinner,
 };
