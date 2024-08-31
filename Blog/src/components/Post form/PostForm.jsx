@@ -5,7 +5,7 @@ import appwriteService from "../../service/dbConfig.js";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export function PostForm(post) {
+export default function PostForm(post) {
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.user);
   const { register, handleSubmit, watch, setValue, control, getValues } =
