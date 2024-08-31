@@ -12,6 +12,7 @@ import RTE from "./RTE.jsx";
 import PostForm from "./Post form/PostForm.jsx";
 import Login from "../components/Login.jsx";
 import AuthLayout from "./authLayout.jsx";
+import Button from "./Button.jsx";
 export {
   Header,
   Footer,
@@ -27,4 +28,5 @@ export {
   PostForm,
   Login,
   AuthLayout,
+  Button,
 };

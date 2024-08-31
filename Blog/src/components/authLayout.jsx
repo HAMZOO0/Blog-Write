@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../store/authSlice";
 import { useSelector } from "react-redux";
-import authService from "../service/auth";
-import { useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "./index";
 
 export default function AuthLayout({ children, authentication = true }) {

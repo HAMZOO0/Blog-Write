@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import services from "../service/dbConfig";
-import { PostCard, LoadingSpinner } from "../components/index";
-import { useNavigate } from "react-router-dom";
+import { PostCard, LoadingSpinner } from "../components/index.js";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditPost() {
   const navigate = useNavigate();

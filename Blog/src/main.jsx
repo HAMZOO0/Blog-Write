@@ -10,7 +10,8 @@ import AllPost from "./pages/AllPosts.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
-import Signup from "./pages/Signup.js";
+import Signup from "./pages/Signup.jsx";
+import { AuthLayout } from "./components/index.js";
 
 const router = createBrowserRouter([
   {

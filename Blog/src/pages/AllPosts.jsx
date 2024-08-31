@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import services from "../service/dbConfig";
-import PostCard from "../components/index";
+import { PostCard } from "../components/index.js";
 
 export default function AllPosts() {
   const [posts, setPosts] = useState([]);
