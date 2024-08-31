@@ -6,7 +6,7 @@ import authService from "../service/auth";
 import { useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "./index";
 
-export default function authLayout({ children, authentication = true }) {
+export default function AuthLayout({ children, authentication = true }) {
   const navigate = useNavigate();
   const [loader, setloader] = useState(true);
   const authStatus = useSelector((state) => state.auth.state);
