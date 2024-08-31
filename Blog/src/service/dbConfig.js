@@ -1,4 +1,4 @@
-import config from "../cofig variables/config";
+import config from "../cofig variables/config.js"; // Ensure correct path and filename
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Services {
@@ -8,8 +8,8 @@ export class Services {
 
   constructor() {
     this.Client.setEndpoint(config.appWriteUrl).setProject(
-      config.appWriteProjectid
-    );
+      config.appWriteProjectId
+    ); // Correct capitalization
     this.databases = new Databases(this.Client);
     this.storage = new Storage(this.Client);
   }
@@ -18,19 +18,18 @@ export class Services {
     try {
       return await this.databases.createDocument(
         config.appWriteDbId,
-        config.appWriteColectionId,
+        config.appWriteColectionId, // Correct spelling
         slug,
         {
           title,
           content,
           featuredImg,
-          content,
           status,
           userID,
         }
       );
     } catch (error) {
-      console.log("error", error);
+      console.error("Appwrite service :: createPost :: error", error.message);
     }
   }
 
@@ -38,18 +37,17 @@ export class Services {
     try {
       return await this.databases.updateDocument(
         config.appWriteDbId,
-        config.appWriteColectionId,
+        config.appWriteColectionId, // Correct spelling
         slug,
         {
           title,
           content,
           featuredImg,
-          content,
           status,
         }
       );
     } catch (error) {
-      console.log("error", error);
+      console.error("Appwrite service :: updatePost :: error", error.message);
     }
   }
 
@@ -57,66 +55,75 @@ export class Services {
     try {
       await this.databases.deleteDocument(
         config.appWriteDbId,
-        config.appWriteColectionId,
+        config.appWriteColectionId, // Correct spelling
         slug
       );
       return true;
     } catch (error) {
-      console.log("error", error);
+      console.error("Appwrite service :: deletePost :: error", error.message);
+      return false;
     }
   }
 
   async getPost(slug) {
     try {
-      await this.databases.getDocument(
+      return await this.databases.getDocument(
         config.appWriteDbId,
-        config.appWriteColectionId,
+        config.appWriteColectionId, // Correct spelling
         slug
       );
     } catch (error) {
-      console.log("error", error);
+      console.error("Appwrite service :: getPost :: error", error.message);
     }
   }
 
-  async getPosts(queries = [Query.equal("status", "active")]) {
+  async getPosts(queries = [Query.equal("Status", "active")]) {
     try {
       return await this.databases.listDocuments(
-        conf.appwriteDatabaseId,
-        conf.appwriteCollectionId,
+        config.appWriteDbId,
+        config.appWriteColectionId, // Correct spelling
         queries
       );
     } catch (error) {
-      console.log("Appwrite serive :: getPosts :: error", error);
+      console.error("Appwrite service :: getPosts :: error", error.message);
       return false;
     }
   }
 
-  // file upload service
+  // File upload service
 
   async uploadFile(file) {
     try {
       return await this.storage.createFile(
-        conf.appWriteBucketId,
+        config.appWriteBucketId, // Ensure this is correctly set
         ID.unique(),
         file
       );
     } catch (error) {
-      console.log("Appwrite serive :: uploadFile :: error", error);
+      console.error("Appwrite service :: uploadFile :: error", error.message);
       return false;
     }
   }
 
   async deleteFile(fileId) {
     try {
-      await this.storage.deleteFile(conf.appwriteBucketId, fileId);
+      await this.storage.deleteFile(config.appWriteBucketId, fileId);
       return true;
     } catch (error) {
-      console.log("Appwrite serive :: deleteFile :: error", error);
+      console.error("Appwrite service :: deleteFile :: error", error.message);
       return false;
     }
   }
+
   getFilePreview(fileId) {
-    return this.storage.getFilePreview(conf.appwriteBucketId, fileId);
+    try {
+      return this.storage.getFilePreview(config.appWriteBucketId, fileId);
+    } catch (error) {
+      console.error(
+        "Appwrite service :: getFilePreview :: error",
+        error.message
+      );
+    }
   }
 }
 
