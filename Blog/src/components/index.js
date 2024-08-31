@@ -4,17 +4,25 @@ import Footer from "./Footer/Footer.jsx";
 import Logout_btn from "./Header/Logout_btn.jsx";
 import Container from "./container/Container.jsx";
 import Logo from "./Logo.jsx";
-import POstCard from "./PostCard.jsx";
+import PostCard from "./PostCard.jsx";
 import Select from "./Select.jsx";
 import Input from "./Input.jsx";
+import Signup from "./Signup.jsx";
+import RTE from "./RTE.jsx";
+import PostForm from "./Post form/PostForm.jsx";
+import Login from "../pages/login.jsx";
 export {
   Header,
   Footer,
   Logout_btn,
   Container,
   Logo,
-  POstCard,
+  PostCard,
   Select,
   Input,
   LoadingSpinner,
+  Signup,
+  RTE,
+  PostForm,
+  Login,
 };
