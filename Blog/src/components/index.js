@@ -10,7 +10,9 @@ import Input from "./Input.jsx";
 import Signup from "./Signup.jsx";
 import RTE from "./RTE.jsx";
 import PostForm from "./Post form/PostForm.jsx";
-import Login from "../pages/login.jsx";
+import Login from "../components/Login.jsx";
+import AuthLayout from "./authLayout.jsx";
+import Button from "./Button.jsx";
 export {
   Header,
   Footer,
@@ -25,4 +27,6 @@ export {
   RTE,
   PostForm,
   Login,
+  AuthLayout,
+  Button,
 };

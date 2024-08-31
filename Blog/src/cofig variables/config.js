@@ -1,10 +1,9 @@
 const config = {
   appWriteUrl: String(import.meta.env.VITE_APPWRITE_URL),
-  appWriteProjectid: String(import.meta.env.VITE_APPWRITE_PROJECT_ID),
+  appWriteProjectId: String(import.meta.env.VITE_APPWRITE_PROJECT_ID), // Fix key to match environment variable
   appWriteDbId: String(import.meta.env.VITE_APPWRITE_DB_ID),
-  appWriteColectionId: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
-  appWriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_DI),
+  appWriteColectionId: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID), // Fix key to match environment variable
+  appWriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID), // Fix key to match environment variable
 };
 
 export default config;
-import.meta.env;
