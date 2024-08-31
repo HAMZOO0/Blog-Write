@@ -18,7 +18,7 @@ export class Services {
     try {
       return await this.databases.createDocument(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         slug,
         {
           title,
@@ -37,7 +37,7 @@ export class Services {
     try {
       return await this.databases.updateDocument(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         slug,
         {
           title,
@@ -55,7 +55,7 @@ export class Services {
     try {
       await this.databases.deleteDocument(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         slug
       );
       return true;
@@ -69,11 +69,12 @@ export class Services {
     try {
       return await this.databases.getDocument(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         slug
       );
     } catch (error) {
       console.error("Appwrite service :: getPost :: error", error.message);
+      return false;
     }
   }
 
@@ -81,7 +82,7 @@ export class Services {
     try {
       return await this.databases.listDocuments(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         queries
       );
     } catch (error) {
