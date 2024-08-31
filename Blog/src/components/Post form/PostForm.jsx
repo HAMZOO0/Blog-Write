@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "../index.js";
-import appwriteService from "../../service/dbConfig.js";
+import services from "../../service/dbConfig.js";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -23,14 +23,14 @@ export default function PostForm(post) {
     //* if we want to update blog post
     if (post) {
       file = data?.featuredImg[0]
-        ? await appwriteService.uploadFile(data.featuredImg[0])
+        ? await services.uploadFile(data.featuredImg[0])
         : null;
 
       if (file) {
-        await appwriteService.deleteFile(post?.featuredImg);
+        await services.deleteFile(post?.featuredImg);
       }
 
-      const update_blog = await appwriteService.updatePost(post?.slug, {
+      const update_blog = await services.updatePost(post?.slug, {
         ...data,
         featuredImg: file ? file.$id : post.featuredImg, // !!
       });
@@ -41,13 +41,13 @@ export default function PostForm(post) {
     // we if are creating new blog post
     else {
       if (data?.featuredImg && data?.featuredImg?.[0]) {
-        file = await appwriteService.uploadFile(data.featuredImg[0]);
+        file = await services.uploadFile(data.featuredImg[0]);
       }
 
       if (file) {
         const fileid = file.$id;
         data.featuredImg = fileid;
-        let create_blog = await appwriteService.createPost({
+        let create_blog = await services.createPost({
           ...data,
           userID: userData.$id,
         });
@@ -133,7 +133,7 @@ inside watch, you define a function that will run whenever any form field change
         {post && (
           <div className="w-full mb-4">
             <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
+              src={services.getFilePreview(post.featuredImage)}
               alt={post.title}
               className="rounded-lg"
             />
