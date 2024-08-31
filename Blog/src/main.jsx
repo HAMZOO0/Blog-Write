@@ -16,12 +16,16 @@ import { AuthLayout } from "./components/index.js";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
     children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
       {
         path: "/login",
         element: (
-          <AuthLayout>
+          <AuthLayout authentication={false}>
             <Login />
           </AuthLayout>
         ),
@@ -29,7 +33,7 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: (
-          <AuthLayout>
+          <AuthLayout authentication={false}>
             <Signup />
           </AuthLayout>
         ),
