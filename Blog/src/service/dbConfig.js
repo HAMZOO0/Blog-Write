@@ -1,4 +1,4 @@
-import config from "../cofig variables/config.js"; // Ensure correct path and filename
+import config from "../cofigVarbale/config.js"; // Adjust path as needed
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Services {
@@ -9,7 +9,7 @@ export class Services {
   constructor() {
     this.Client.setEndpoint(config.appWriteUrl).setProject(
       config.appWriteProjectId
-    ); // Correct capitalization
+    );
     this.databases = new Databases(this.Client);
     this.storage = new Storage(this.Client);
   }
@@ -18,7 +18,7 @@ export class Services {
     try {
       return await this.databases.createDocument(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         slug,
         {
           title,
@@ -37,7 +37,7 @@ export class Services {
     try {
       return await this.databases.updateDocument(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         slug,
         {
           title,
@@ -55,7 +55,7 @@ export class Services {
     try {
       await this.databases.deleteDocument(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         slug
       );
       return true;
@@ -69,7 +69,7 @@ export class Services {
     try {
       return await this.databases.getDocument(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         slug
       );
     } catch (error) {
@@ -81,7 +81,7 @@ export class Services {
     try {
       return await this.databases.listDocuments(
         config.appWriteDbId,
-        config.appWriteColectionId, // Correct spelling
+        config.appWriteCollectionId, // Correct spelling
         queries
       );
     } catch (error) {
@@ -89,8 +89,6 @@ export class Services {
       return false;
     }
   }
-
-  // File upload service
 
   async uploadFile(file) {
     try {

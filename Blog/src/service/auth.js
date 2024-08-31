@@ -1,4 +1,4 @@
-import config from "../cofig variables/config";
+import config from "../cofigVarbale/config.js"; // Ensure correct path and filename
 import { Client, Account, ID } from "appwrite";
 
 export class AuthService {
@@ -6,7 +6,7 @@ export class AuthService {
 
   constructor() {
     this.Client.setEndpoint(config.appWriteUrl).setProject(
-      config.appWriteProjectid
+      config.appWriteProjectId
     );
 
     this.Account = new Account(this.Client);
@@ -16,8 +16,7 @@ export class AuthService {
     try {
       const userAccount = await this.Account.create(
         ID.unique(),
-        name,
-        email,
+        email, // Correct order of parameters: email first, then name
         password
       );
 
@@ -27,6 +26,7 @@ export class AuthService {
         return userAccount;
       }
     } catch (error) {
+      console.error("Error creating account:", error);
       throw error;
     }
   }
