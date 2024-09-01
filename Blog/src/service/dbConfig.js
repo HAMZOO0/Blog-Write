@@ -74,6 +74,7 @@ export class Services {
       );
     } catch (error) {
       console.error("Appwrite service :: getPost :: error", error.message);
+      return false;
     }
   }
 

@@ -73,7 +73,7 @@ function Signup() {
             <Input
               label="Password: "
               type="password"
-              placeholder="Enter your password"
+              placeholder="Enter your password minimum 8 characters"
               {...register("password", {
                 required: true,
               })}
