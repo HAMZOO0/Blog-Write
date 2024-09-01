@@ -10,8 +10,9 @@ import EditPost from "./pages/EditPost.jsx";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
-import { AuthLayout, PostCard } from "./components/index.js";
+import { AuthLayout } from "./components/index.js";
 import AllPosts from "./pages/AllPosts.jsx";
+import Post from "./pages/Post.jsx";
 
 const router = createBrowserRouter([
   {
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/post/:slug",
-        element: <PostCard />,
+        element: <Post />,
       },
     ],
   },

@@ -3,8 +3,7 @@ import appwriteService from "../service/dbConfig";
 import { Link } from "react-router-dom";
 
 function PostCard({ $id, title, featuredImg }) {
-  console.log("featuredImage", featuredImg);
-  console.log("id", $id);
+  // console.log("featuredImage", featuredImg);
 
   return (
     // When user clicks on the card, it redirects to /post/$id
