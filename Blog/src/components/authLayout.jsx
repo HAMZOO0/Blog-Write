@@ -6,13 +6,16 @@ import { LoadingSpinner } from "./index";
 export default function AuthLayout({ children, authentication = true }) {
   const navigate = useNavigate();
   const [loader, setloader] = useState(true);
-  const authStatus = useSelector((state) => state.auth.state);
+  const authStatus = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    if (authentication && authStatus) {
+    console.log("authentication", authentication);
+    console.log("authStatus", authStatus);
+
+    if (authentication && authStatus !== authentication) {
       //   setloader(false);
       navigate("/login");
-    } else {
+    } else if (!authentication && authStatus !== authentication) {
       navigate("/");
     }
     setloader(false);

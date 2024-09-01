@@ -1,4 +1,4 @@
-import config from "../cofig variables/config.js"; // Ensure correct path and filename
+import config from "../cofigVarbale/config.js"; // Adjust path as needed
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Services {
@@ -9,7 +9,7 @@ export class Services {
   constructor() {
     this.Client.setEndpoint(config.appWriteUrl).setProject(
       config.appWriteProjectId
-    ); // Correct capitalization
+    );
     this.databases = new Databases(this.Client);
     this.storage = new Storage(this.Client);
   }
@@ -90,8 +90,6 @@ export class Services {
       return false;
     }
   }
-
-  // File upload service
 
   async uploadFile(file) {
     try {

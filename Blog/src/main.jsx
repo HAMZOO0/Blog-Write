@@ -6,12 +6,12 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AddPost from "./pages/AddPost.jsx";
-import AllPost from "./pages/AllPosts.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
-import { AuthLayout } from "./components/index.js";
+import { AuthLayout, PostCard } from "./components/index.js";
+import AllPosts from "./pages/AllPosts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-          <AuthLayout>
+          <AuthLayout authentication={false}>
             <Login />
           </AuthLayout>
         ),
@@ -33,34 +33,41 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: (
-          <AuthLayout>
+          <AuthLayout authentication={false}>
             <Signup />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/all-posts",
+        element: (
+          <AuthLayout authentication>
+            {" "}
+            <AllPosts />
           </AuthLayout>
         ),
       },
       {
         path: "/add-post",
         element: (
-          <AuthLayout>
+          <AuthLayout authentication>
+            {" "}
             <AddPost />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "/all-post",
-        element: (
-          <AuthLayout>
-            <AllPost />
           </AuthLayout>
         ),
       },
       {
         path: "/edit-post/:slug",
         element: (
-          <AuthLayout>
+          <AuthLayout authentication>
+            {" "}
             <EditPost />
           </AuthLayout>
         ),
+      },
+      {
+        path: "/post/:slug",
+        element: <PostCard />,
       },
     ],
   },
