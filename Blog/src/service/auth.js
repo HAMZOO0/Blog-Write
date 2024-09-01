@@ -17,7 +17,8 @@ export class AuthService {
       const userAccount = await this.Account.create(
         ID.unique(),
         email, // Correct order of parameters: email first, then name
-        password
+        password,
+        name
       );
 
       if (userAccount) {
