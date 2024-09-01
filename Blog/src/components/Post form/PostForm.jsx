@@ -5,7 +5,10 @@ import services from "../../service/dbConfig.js";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export default function PostForm(post) {
+export default function PostForm({ post }) {
+  // Correct destructuring
+  console.log("Post Data:", post); // Debugging statement
+
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.user);
   const { register, handleSubmit, watch, setValue, control, getValues } =
@@ -19,39 +22,33 @@ export default function PostForm(post) {
     });
 
   const submit = async (data) => {
-    let file = null;
-    //* if we want to update blog post
-    if (post) {
-      file = data?.featuredImg[0]
-        ? await services.uploadFile(data.featuredImg[0])
-        : null;
+    let fileId = null;
 
-      if (file) {
-        await services.deleteFile(post?.featuredImg);
+    if (data.featuredImg?.[0]) {
+      const file = await services.uploadFile(data.featuredImg[0]);
+      fileId = file.$id;
+    }
+
+    if (post) {
+      if (fileId && post.featuredImg) {
+        await services.deleteFile(post.featuredImg);
       }
 
-      const update_blog = await services.updatePost(post?.slug, {
+      const update_blog = await services.updatePost(post.$id, {
         ...data,
-        featuredImg: file ? file.$id : post.featuredImg, // !!
+        featuredImg: fileId || post.featuredImg, // Use existing file if not uploading new
       });
+
       if (update_blog) {
         navigate(`/post/${update_blog.$id}`);
       }
-    }
-    // we if are creating new blog post
-    else {
-      if (data?.featuredImg && data?.featuredImg?.[0]) {
-        file = await services.uploadFile(data.featuredImg[0]);
-      }
+    } else {
+      const create_blog = await services.createPost({
+        ...data,
+        userId: userData.$id,
+        featuredImg: fileId,
+      });
 
-      if (file) {
-        const fileid = file.$id;
-        data.featuredImg = fileid;
-        let create_blog = await services.createPost({
-          ...data,
-          userID: userData.$id,
-        });
-      }
       if (create_blog) {
         navigate(`/post/${create_blog.$id}`);
       }
@@ -59,42 +56,26 @@ export default function PostForm(post) {
   };
 
   const slugTransform = useCallback((value) => {
-    if (value && typeof value === "string")
+    if (value && typeof value === "string") {
       return value
         .trim()
         .toLowerCase()
-        .replace(/[^a-zA-Z\d\s]+/g, "-")
-        .replace(/\s/g, "-");
-
+        .replace(/\s+/g, "-") // Replace multiple spaces with a single hyphen
+        .replace(/[^a-z0-9\-]/g, ""); // Remove non-alphanumeric characters except hyphens
+    }
     return "";
   }, []);
 
   useEffect(() => {
-    // Step 1: Set up a subscription to watch form field changes
-    const subscribe = watch((value, { name }) => {
-      // Step 2: Check if the changed field is 'title'
+    const subscription = watch((value, { name }) => {
       if (name === "title") {
-        // Step 3: Update the 'slug' field based on the 'title'
         setValue("slug", slugTransform(value.title), { shouldValidate: true });
-
-        /*  setValue is a function to programmatically update the form field.
-    "slug" is the name of the field you want to update.
-    slugTransform(value.title) converts the title value into a slug format (e.g., "My Title" becomes "my-title").
-    { shouldValidate: true } tells the form to validate the slug field after updating it.  */
       }
-      // Clean up the subscription
-      return subscribe.unsubscribe();
     });
+
+    return () => subscription.unsubscribe(); // Proper cleanup
   }, [watch, slugTransform, setValue]);
 
-  /*
-* watch is a function from react-hook-form that lets you listen for changes in the form fields.
-
-inside watch, you define a function that will run whenever any form field changes.
-* value contains the current values of all the form fields.
-* { name } extracts the name of the field that changed.
-
-*/
   return (
     <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
       <div className="w-2/3 px-2">
@@ -128,12 +109,12 @@ inside watch, you define a function that will run whenever any form field change
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
+          {...register("featuredImg", { required: !post })}
         />
-        {post && (
+        {post && post.featuredImg && (
           <div className="w-full mb-4">
             <img
-              src={services.getFilePreview(post.featuredImage)}
+              src={services.getFilePreview(post.featuredImg)} // Ensure correct preview URL
               alt={post.title}
               className="rounded-lg"
             />
