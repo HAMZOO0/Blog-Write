@@ -10,7 +10,7 @@ function Home() {
   const isAuthenticated = useSelector((state) => state.auth.status);
 
   useEffect(() => {
-    service.getPosts().then((posts) => {
+    service.getPosts([]).then((posts) => {
       if (posts) {
         setPosts(posts.documents);
       }

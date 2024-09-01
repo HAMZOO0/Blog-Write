@@ -10,7 +10,7 @@ export default function Post() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const userData = useSelector((state) => state.auth.userData);
+  const userData = useSelector((state) => state.auth.user);
 
   const isAuthor = post && userData ? post.userId === userData.$id : false;
 
@@ -27,7 +27,7 @@ export default function Post() {
     // !! post.$id
     service.deletePost(post.slug).then((status) => {
       if (status) {
-        service.deleteFile(post.featuredImage);
+        service.deleteFile(post.featuredImg);
         navigate("/");
       }
     });
@@ -38,7 +38,8 @@ export default function Post() {
       <Container>
         <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
           <img
-            src={service.getFilePreview(post.featuredImage)}
+            // !
+            src={service.getFilePreview(post.featuredImg)}
             alt={post.title}
             className="rounded-xl"
           />
