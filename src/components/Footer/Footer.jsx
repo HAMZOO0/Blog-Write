@@ -36,9 +36,14 @@ function Footer() {
                   </NavLink>
                 </li>
                 <li>
-                  <Link to="/about" className="hover:underlin">
+                  <a
+                    href="https://personal-portfolio-phi-mocha.vercel.app"
+                    className="hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     About
-                  </Link>
+                  </a>{" "}
                 </li>
               </ul>
             </div>
