@@ -1,4 +1,3 @@
-// all post selection page where all post shows and when we click on it  it navigate to post/:slug and then you can edit and delete blogs
 import React, { useEffect, useState } from "react";
 import services from "../service/dbConfig";
 import { PostCard, Container } from "../components/index.js";
@@ -17,9 +16,9 @@ export default function AllPosts() {
   return (
     <div className="w-full py-8">
       <Container>
-        <div className="flex flex-wrap">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
+            <div key={post.$id} className="p-2">
               <PostCard {...post} />
             </div>
           ))}
@@ -28,3 +27,4 @@ export default function AllPosts() {
     </div>
   );
 }
+ 
