@@ -52,7 +52,7 @@ function Home() {
             <div className="absolute inset-0 w-full sm:my-20 sm:pt-1 pt-12 h-full ">
               <img
                 className="w-96"
-                src="https://vadesystemsolutions.com/wp/wp-content/uploads/2023/06/payroll-1024x1024.png"
+                src="https://i.ibb.co/5BCcDYB/Remote2.png"
                 alt="image1"
               />
             </div>
@@ -61,7 +61,7 @@ function Home() {
           <div className="grid  place-items-center sm:mt-20">
             <img
               className="sm:w-96 w-48"
-              src="https://img.freepik.com/free-vector/illustration-multitasking-concept_23-2148409236.jpg?w=740&t=st=1725253969~exp=1725254569~hmac=5a23e11ffc8a217828299d27869cb5d9f9c1f58ebf645195ca7778f284acaf91"
+              src="https://i.ibb.co/2M7rtLk/Remote1.png"
               alt="image2"
             />
           </div>
@@ -77,9 +77,9 @@ function Home() {
   return (
     <div className="w-full py-8">
       <Container>
-        <div className="flex flex-wrap">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
+            <div key={post.$id} className="p-2">
               <PostCard {...post} />
             </div>
           ))}
